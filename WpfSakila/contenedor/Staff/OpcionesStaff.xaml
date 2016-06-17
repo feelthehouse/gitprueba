@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WpfSakila="clr-namespace:WpfSakila" x:Class="WpfSakila.contenedor.Staff.OpcionesStaff"
+        Title="OpcionesStaff" Height="400" Width="600" Loaded="Window_Loaded">
+    <Window.Resources>
+        <WpfSakila:sakilaDataSet x:Key="sakilaDataSet"/>
+        <CollectionViewSource x:Key="staffViewSource" Source="{Binding staff, Source={StaticResource sakilaDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource staffViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="213*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="staffDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,29,0,155" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedValuePath="staff_id">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="staff_idColumn" Width="SizeToHeader" IsReadOnly="True" Header="staff id" Binding="{Binding staff_id}"/>
+                <DataGridTextColumn x:Name="first_nameColumn" Width="SizeToHeader" Header="first name" Binding="{Binding first_name}"/>
+                <DataGridTextColumn x:Name="last_nameColumn" Width="SizeToHeader" Header="last name" Binding="{Binding last_name}"/>
+                <DataGridTextColumn x:Name="address_idColumn" Width="SizeToHeader" Header="address id" Binding="{Binding address_id}"/>
+                <DataGridTextColumn x:Name="emailColumn" Width="SizeToHeader" Header="email" Binding="{Binding email}"/>
+                <DataGridTextColumn x:Name="store_idColumn" Width="SizeToHeader" Header="store id" Binding="{Binding store_id}"/>
+                <DataGridCheckBoxColumn x:Name="activeColumn" Width="SizeToHeader" Header="active" Binding="{Binding active}"/>
+                <DataGridTextColumn x:Name="usernameColumn" Width="SizeToHeader" Header="username" Binding="{Binding username}"/>
+                <DataGridTextColumn x:Name="passwordColumn" Width="SizeToHeader" Header="password" Binding="{Binding password}"/>
+                <DataGridTemplateColumn x:Name="last_updateColumn" Width="SizeToHeader" Header="last update">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding last_update, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnAgregarStaff" Content="Agregar Staff " Margin="10,239,60,0" VerticalAlignment="Top" Click="Button_Click" Height="20"/>
+        <Button x:Name="btnEliminarStaff" Content="Eliminar Staff" HorizontalAlignment="Left" Margin="135,239,0,0" VerticalAlignment="Top" Width="90" Height="20" Grid.ColumnSpan="2" Click="btnEliminarStaff_Click"/>
+
+    </Grid>
+</Window>
