@@ -1,0 +1,16 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WpfSakila="clr-namespace:WpfSakila" x:Class="WpfSakila.contenedor.arriendos.OpcionesArriendo"
+        Title="OpcionesArriendo" Height="500" Width="500" Loaded="Window_Loaded">
+    <Window.Resources>
+        <WpfSakila:sakilaDataSet x:Key="sakilaDataSet"/>
+        <CollectionViewSource x:Key="rentalViewSource" Source="{Binding rental, Source={StaticResource sakilaDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource rentalViewSource}">
+        <Button x:Name="btnAgregarArriendo" Content="Agregar Arriendo" HorizontalAlignment="Left" Margin="20,418,0,0" VerticalAlignment="Top" Width="100" Click="btnAgregarArriendo_Click"/>
+        <Button x:Name="btnQuitarArriendo" Content="Quitar Arriendo" HorizontalAlignment="Left" Margin="150,418,0,0" VerticalAlignment="Top" Width="101"/>
+        <Label Content="Lista de Arriendos" HorizontalAlignment="Left" Margin="150,22,0,0" VerticalAlignment="Top" Width="201" FontFamily="Myriad Web Pro" FontSize="24"/>
+
+    </Grid>
+</Window>
