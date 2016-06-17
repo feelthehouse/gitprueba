@@ -30,7 +30,11 @@ namespace WpfSakila.contenedor.Staff
         {
             SqlConnection crearConexion = new SqlConnection(ConfigurationManager.ConnectionStrings["WpfSakila.Properties.Settings.sakilaConnectionString"].ToString());
             return crearConexion;
+
+            int numero = 1;
         }
+
+       
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
